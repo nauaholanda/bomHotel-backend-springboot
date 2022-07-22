@@ -2,7 +2,6 @@ package br.com.nauaholanda.bomHotel.controller;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,14 +23,8 @@ public class LoginController {
 	
 	@PostMapping
 	public ResponseEntity<UserOutputDTO> login(@RequestBody @Valid UserLoginInputDTO userLoginDTO) {
-		User user = new User();
-		BeanUtils.copyProperties(userLoginDTO, user);
-	
-		user = loginService.login(user);
-		
-		UserOutputDTO userOutputDTO = new UserOutputDTO();
-		BeanUtils.copyProperties(user, userOutputDTO);
-		
+		User user = loginService.login(new User(userLoginDTO));
+		UserOutputDTO userOutputDTO = new UserOutputDTO(user);
 		return ResponseEntity.ok(userOutputDTO);
 	}
 }

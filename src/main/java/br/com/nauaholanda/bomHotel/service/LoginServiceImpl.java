@@ -13,6 +13,7 @@ import br.com.nauaholanda.bomHotel.repository.UserRepository;
 
 @Service
 public class LoginServiceImpl implements LoginService {
+	
 	@Autowired
 	UserRepository userRepository;
 
