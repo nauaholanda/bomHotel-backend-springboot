@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import br.com.nauaholanda.bomHotel.dto.input.UserInputDTO;
+import br.com.nauaholanda.bomHotel.dto.input.UserLoginInputDTO;
 import br.com.nauaholanda.bomHotel.enumeration.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,4 +33,15 @@ public class User {
 	
 	@Transient
 	private UserRole role;
+	
+	public User(UserInputDTO userInputDTO) {
+		this.username = userInputDTO.getUsername();
+		this.password = userInputDTO.getPassword();
+		this.name = userInputDTO.getName();
+	}
+	
+	public User(UserLoginInputDTO userLoginInputDTO) {
+		this.username = userLoginInputDTO.getUsername();
+		this.password = userLoginInputDTO.getPassword();
+	}
 }

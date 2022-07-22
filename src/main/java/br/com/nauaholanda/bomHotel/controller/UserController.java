@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.nauaholanda.bomHotel.dto.input.UserInputDTO;
 import br.com.nauaholanda.bomHotel.dto.output.UserOutputDTO;
+import br.com.nauaholanda.bomHotel.model.User;
 import br.com.nauaholanda.bomHotel.service.UserService;
 
 @RestController
@@ -24,6 +25,11 @@ public class UserController {
 	
 	@PostMapping
 	public ResponseEntity<UserOutputDTO> create(@RequestBody @Valid UserInputDTO userInputDTO) {
-		return ResponseEntity.created(URI.create("")).body(null);
+		User userToCreate = new User(userInputDTO);
+		
+		userService.create(userToCreate);
+		
+		UserOutputDTO userOutputDTO = new UserOutputDTO(userToCreate);
+		return ResponseEntity.created(URI.create("/user/" + userOutputDTO.getId())).body(userOutputDTO);
 	}
 }
