@@ -10,6 +10,8 @@ public interface AccommodationService {
 	
 	List<Accommodation> find5Newest();
 	
+	List<Accommodation> search(String city, String state, String country);
+	
 	Accommodation findById(Long id);
 
 	Accommodation create(Accommodation accommodation);

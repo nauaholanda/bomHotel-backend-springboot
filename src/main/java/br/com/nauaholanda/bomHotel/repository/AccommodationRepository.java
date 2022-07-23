@@ -12,4 +12,6 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, Lo
 	
 	public List<Accommodation> findFirst5ByOrderByIdDesc();
 	
+	public List<Accommodation> findByCityContainingIgnoreCaseAndStateContainingIgnoreCaseAndCountryContainingIgnoreCase(String city, String state, String country);
+	
 }

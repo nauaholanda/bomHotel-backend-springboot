@@ -27,6 +27,16 @@ public class AccommodationServiceImpl implements AccommodationService {
 	}
 	
 	@Override
+	public List<Accommodation> search(String city, String state, String country) {
+		city = city == null ? "" : city;
+		state = state == null ? "" : state;
+		country = country == null ? "" : country;
+		
+		return accommodationRepository
+				.findByCityContainingIgnoreCaseAndStateContainingIgnoreCaseAndCountryContainingIgnoreCase(city, state, country);
+	}
+	
+	@Override
 	public Accommodation findById(Long id) {
 		Optional<Accommodation> accommodationFoundOptional = accommodationRepository.findById(id);
 		
@@ -49,4 +59,5 @@ public class AccommodationServiceImpl implements AccommodationService {
 	public void deleteById(Long id) {
 		accommodationRepository.deleteById(id);
 	}
+
 }

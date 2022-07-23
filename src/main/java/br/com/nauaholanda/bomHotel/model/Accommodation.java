@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import br.com.nauaholanda.bomHotel.dto.input.AccommodationInputDTO;
+import br.com.nauaholanda.bomHotel.dto.input.AccommodationSearchInputDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -47,6 +48,12 @@ public class Accommodation {
 		this.city = accommodationInputDTO.getCity();
 		this.state = accommodationInputDTO.getState();
 		this.country = accommodationInputDTO.getCountry();
+	}
+
+	public Accommodation(AccommodationSearchInputDTO accommodationSearchInputDTO) {
+		this.city = accommodationSearchInputDTO.getCity();
+		this.state = accommodationSearchInputDTO.getState();
+		this.country = accommodationSearchInputDTO.getCountry();
 	}
 	
 }

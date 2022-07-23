@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.nauaholanda.bomHotel.dto.input.AccommodationInputDTO;
@@ -50,6 +51,14 @@ public class AccommodationController {
 		List<AccommodationOutputDTO> accommodationDTOList = acommodationService.find5Newest().stream()
 				.map(accommodation -> new AccommodationOutputDTO(accommodation)).collect(Collectors.toList());
 		
+		return ResponseEntity.ok(accommodationDTOList);
+	}
+	
+	@GetMapping("/search")
+	public ResponseEntity<List<AccommodationOutputDTO>> search(@RequestParam String city, @RequestParam String state, @RequestParam String country) {
+		List<AccommodationOutputDTO> accommodationDTOList = acommodationService.search(city, state, country).stream()
+				.map(accommodation -> new AccommodationOutputDTO(accommodation)).collect(Collectors.toList());
+	
 		return ResponseEntity.ok(accommodationDTOList);
 	}
 	
