@@ -14,13 +14,15 @@ public class AccommodationOutputDTO {
 	
 	private Double dailyCost;
 	
-	private Integer numberOfPeople;
+	private Integer occupancy;
 	
 	private String address;
 	
 	private String zipCode;
 	
 	private String city;
+	
+	private String state;
 	
 	private String country;
 	
@@ -29,10 +31,11 @@ public class AccommodationOutputDTO {
 		this.name = accommodation.getName();
 		this.description = accommodation.getDescription();
 		this.dailyCost = accommodation.getDailyCost();
-		this.numberOfPeople = accommodation.getNumberOfPeople();
+		this.occupancy = accommodation.getOccupancy();
 		this.address = accommodation.getAddress();
 		this.zipCode = accommodation.getZipCode();
 		this.city = accommodation.getCity();
+		this.state = accommodation.getState();
 		this.country = accommodation.getCountry();
 	}
 }

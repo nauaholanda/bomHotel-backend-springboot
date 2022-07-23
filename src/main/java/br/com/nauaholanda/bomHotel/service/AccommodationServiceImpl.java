@@ -18,4 +18,9 @@ public class AccommodationServiceImpl implements AccommodationService {
 	public List<Accommodation> findAll() {
 		return accommodationRepository.findAll();
 	}
+
+	@Override
+	public Accommodation create(Accommodation accommodation) {
+		return accommodationRepository.save(accommodation);
+	}
 }

@@ -8,4 +8,6 @@ public interface AccommodationService {
 
 	List<Accommodation> findAll();
 
+	Accommodation create(Accommodation accommodation);
+
 }
