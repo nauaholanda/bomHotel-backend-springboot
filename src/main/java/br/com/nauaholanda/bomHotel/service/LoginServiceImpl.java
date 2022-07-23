@@ -26,20 +26,17 @@ public class LoginServiceImpl implements LoginService {
 
 		Optional<User> userInDBOptional = userRepository.findByUsername(userToLogin.getUsername());
 
-		if (userInDBOptional.isPresent()) {
-			User userInDB = userInDBOptional.get();
-
-			if (userInDB.getPassword() != null && userToLogin.getPassword().equals(userInDB.getPassword())) {
-				userInDB.setRole(UserRole.CUSTOMER);
-
-				return userInDB;
-			} else {
-				throw new UserAuthenticationFailedException(userToLogin.getUsername());
-			}
-
-		} else {
+		if (userInDBOptional.isEmpty())
 			throw new UserNotFoundException(userToLogin.getUsername());
-		}
+			
+		User userInDB = userInDBOptional.get();
+
+		if (userInDB.getPassword() != null && userToLogin.getPassword().equals(userInDB.getPassword())) {
+			userInDB.setRole(UserRole.CUSTOMER);
+			return userInDB;
+			
+		} else
+			throw new UserAuthenticationFailedException(userToLogin.getUsername());		
 
 	}
 }
