@@ -22,6 +22,11 @@ public class AccommodationServiceImpl implements AccommodationService {
 	}
 	
 	@Override
+	public List<Accommodation> find5Newest(){
+		return accommodationRepository.findFirst5ByOrderByIdDesc();
+	}
+	
+	@Override
 	public Accommodation findById(Long id) {
 		Optional<Accommodation> accommodationFoundOptional = accommodationRepository.findById(id);
 		

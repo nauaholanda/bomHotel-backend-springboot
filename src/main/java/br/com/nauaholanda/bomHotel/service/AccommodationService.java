@@ -8,6 +8,8 @@ public interface AccommodationService {
 
 	List<Accommodation> findAll();
 	
+	List<Accommodation> find5Newest();
+	
 	Accommodation findById(Long id);
 
 	Accommodation create(Accommodation accommodation);

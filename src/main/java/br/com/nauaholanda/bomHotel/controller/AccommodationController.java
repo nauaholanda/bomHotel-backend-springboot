@@ -45,6 +45,14 @@ public class AccommodationController {
 		return ResponseEntity.ok(new AccommodationOutputDTO(accommodationFound));
 	}
 	
+	@GetMapping("/newest")
+	public ResponseEntity<List<AccommodationOutputDTO>> find5Newest() {
+		List<AccommodationOutputDTO> accommodationDTOList = acommodationService.find5Newest().stream()
+				.map(accommodation -> new AccommodationOutputDTO(accommodation)).collect(Collectors.toList());
+		
+		return ResponseEntity.ok(accommodationDTOList);
+	}
+	
 	@PostMapping
 	public ResponseEntity<AccommodationOutputDTO> create(@RequestBody @Valid AccommodationInputDTO accommodationInputDTO) {
 		Accommodation accommodationCreated = acommodationService.create(new Accommodation(accommodationInputDTO));
@@ -65,4 +73,5 @@ public class AccommodationController {
 		
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
+	
 }

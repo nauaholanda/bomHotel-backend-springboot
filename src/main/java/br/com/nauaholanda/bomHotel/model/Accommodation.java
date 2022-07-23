@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 
 import br.com.nauaholanda.bomHotel.dto.input.AccommodationInputDTO;
 import lombok.Data;
@@ -21,7 +20,6 @@ public class Accommodation {
 	
 	private String name;
 	
-	@Lob
 	private String description;
 	
 	private Double dailyCost;
