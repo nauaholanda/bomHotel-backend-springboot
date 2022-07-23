@@ -10,4 +10,6 @@ public interface AccommodationService {
 
 	Accommodation create(Accommodation accommodation);
 
+	Accommodation update(Accommodation accommodation);
+
 }

@@ -39,6 +39,7 @@ public class Accommodation {
 	private String country;
 	
 	public Accommodation(AccommodationInputDTO accommodationInputDTO) {
+		this.id = accommodationInputDTO.getId();
 		this.name = accommodationInputDTO.getName();
 		this.description = accommodationInputDTO.getDescription();
 		this.dailyCost = accommodationInputDTO.getDailyCost();

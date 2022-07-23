@@ -23,4 +23,9 @@ public class AccommodationServiceImpl implements AccommodationService {
 	public Accommodation create(Accommodation accommodation) {
 		return accommodationRepository.save(accommodation);
 	}
+
+	@Override
+	public Accommodation update(Accommodation accommodation) {
+		return accommodationRepository.save(accommodation);
+	}
 }
