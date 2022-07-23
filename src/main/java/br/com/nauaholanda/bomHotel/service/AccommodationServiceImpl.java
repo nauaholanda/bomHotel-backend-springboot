@@ -1,10 +1,12 @@
 package br.com.nauaholanda.bomHotel.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.nauaholanda.bomHotel.exception.AccommodationNotFoundException;
 import br.com.nauaholanda.bomHotel.model.Accommodation;
 import br.com.nauaholanda.bomHotel.repository.AccommodationRepository;
 
@@ -17,6 +19,15 @@ public class AccommodationServiceImpl implements AccommodationService {
 	@Override
 	public List<Accommodation> findAll() {
 		return accommodationRepository.findAll();
+	}
+	
+	@Override
+	public Accommodation findById(Long id) {
+		Optional<Accommodation> accommodationFoundOptional = accommodationRepository.findById(id);
+		
+		if (accommodationFoundOptional.isEmpty()) throw new AccommodationNotFoundException(id);
+		
+		return accommodationFoundOptional.get();
 	}
 
 	@Override

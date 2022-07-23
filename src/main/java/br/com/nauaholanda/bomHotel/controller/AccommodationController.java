@@ -38,6 +38,13 @@ public class AccommodationController {
 		return ResponseEntity.ok(accommodationDTOList);
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<AccommodationOutputDTO> findById(@PathVariable Long id) {
+		Accommodation accommodationFound = acommodationService.findById(id);
+		
+		return ResponseEntity.ok(new AccommodationOutputDTO(accommodationFound));
+	}
+	
 	@PostMapping
 	public ResponseEntity<AccommodationOutputDTO> create(@RequestBody @Valid AccommodationInputDTO accommodationInputDTO) {
 		Accommodation accommodationCreated = acommodationService.create(new Accommodation(accommodationInputDTO));
