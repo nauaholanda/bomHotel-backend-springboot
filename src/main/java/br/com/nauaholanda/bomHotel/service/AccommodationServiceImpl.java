@@ -28,4 +28,9 @@ public class AccommodationServiceImpl implements AccommodationService {
 	public Accommodation update(Accommodation accommodation) {
 		return accommodationRepository.save(accommodation);
 	}
+	
+	@Override
+	public void deleteById(Long id) {
+		accommodationRepository.deleteById(id);
+	}
 }
