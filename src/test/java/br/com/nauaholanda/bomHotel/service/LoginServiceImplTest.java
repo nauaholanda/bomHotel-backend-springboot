@@ -28,9 +28,9 @@ public class LoginServiceImplTest {
 	@Test
 	void loginMethodShouldReturnARegisteredUser() {
 		User userToLogin = new User(null, "username", "password", null, null);
-		User userInDB = new User(1L, userToLogin.getUsername(), userToLogin.getPassword(), "Name", null);
+		User userOnDB = new User(1L, userToLogin.getUsername(), userToLogin.getPassword(), "Name", null);
 		
-		Mockito.when(userRepository.findByUsername(userToLogin.getUsername())).thenReturn(Optional.of(userInDB));
+		Mockito.when(userRepository.findByUsername(userToLogin.getUsername())).thenReturn(Optional.of(userOnDB));
 		
 		User expectedUser = new User(1L, userToLogin.getUsername(), userToLogin.getPassword(), "Name", UserRole.CUSTOMER);
 		Assertions.assertEquals(expectedUser, LoginService.login(userToLogin));
@@ -55,9 +55,9 @@ public class LoginServiceImplTest {
 	@Test
 	void loginMethodShouldThrowAUserAuthenticationException() {
 		User userToLogin = new User(null, "username", "password", null, null);
-		User userInDB = new User(1L, userToLogin.getUsername(), "another_password", "Name", null);
+		User userOnDB = new User(1L, userToLogin.getUsername(), "another_password", "Name", null);
 		
-		Mockito.when(userRepository.findByUsername(userToLogin.getUsername())).thenReturn(Optional.of(userInDB));
+		Mockito.when(userRepository.findByUsername(userToLogin.getUsername())).thenReturn(Optional.of(userOnDB));
 		
 		try {
 			LoginService.login(userToLogin);

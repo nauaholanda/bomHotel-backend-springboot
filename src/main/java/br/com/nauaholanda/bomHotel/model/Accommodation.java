@@ -7,10 +7,12 @@ import javax.persistence.Id;
 
 import br.com.nauaholanda.bomHotel.dto.input.AccommodationInputDTO;
 import br.com.nauaholanda.bomHotel.dto.input.AccommodationSearchInputDTO;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Accommodation {
