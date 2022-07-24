@@ -16,6 +16,9 @@ public class AccommodationInputDTO {
 
 	@NotBlank
 	private String description;
+	
+	@NotBlank
+	private String imageURL;
 
 	@NotNull
 	private Double dailyCost;

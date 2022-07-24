@@ -25,6 +25,8 @@ public class Accommodation {
 	
 	private String description;
 	
+	private String imageURL;
+	
 	private Double dailyCost;
 	
 	private Integer occupancy;
@@ -43,6 +45,7 @@ public class Accommodation {
 		this.id = accommodationInputDTO.getId();
 		this.name = accommodationInputDTO.getName();
 		this.description = accommodationInputDTO.getDescription();
+		this.imageURL = accommodationInputDTO.getImageURL();
 		this.dailyCost = accommodationInputDTO.getDailyCost();
 		this.occupancy = accommodationInputDTO.getOccupancy();
 		this.address = accommodationInputDTO.getAddress();

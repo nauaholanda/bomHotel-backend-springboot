@@ -48,7 +48,7 @@ public class AccommodationServiceImplTest {
 	@DisplayName("Search method with params should return repository Search by city, state and country method result")
 	@Test
 	void SearchMethodWithParamsShouldReturnRepositorySearchByCityStateAndCountryMethodResult() {
-		List<Accommodation> accommodationsOnDB = Arrays.asList(new Accommodation(1L, "name", "description", 2.5D, 2, "address", "60000-000", "city", "state", "country"));
+		List<Accommodation> accommodationsOnDB = Arrays.asList(new Accommodation(1L, "name", "description", "imageURL", 2.5D, 2, "address", "60000-000", "city", "state", "country"));
 		
 		String cityToSearch = "city";
 		String stateToSearch = "state";
@@ -65,7 +65,7 @@ public class AccommodationServiceImplTest {
 	@DisplayName("Search method with null params should return repository Search by city, state and country method result")
 	@Test
 	void SearchMethodWithNullParamsShouldReturnRepositorySearchByCityStateAndCountryMethodResult() {
-		List<Accommodation> accommodationsOnDB = Arrays.asList(new Accommodation(1L, "name", "description", 0D, 0, "address", "60000-000", "city", "state", "country"));
+		List<Accommodation> accommodationsOnDB = Arrays.asList(new Accommodation(1L, "name", "description", "imageURL", 0D, 0, "address", "60000-000", "city", "state", "country"));
 		
 		String cityToSearch = null;
 		String stateToSearch = null;
@@ -97,7 +97,7 @@ public class AccommodationServiceImplTest {
 	@DisplayName("Find by id method should return a registered accommodation")
 	@Test
 	void findByIdMethodShouldReturnARegisteredAccommodation() {
-		Accommodation accommodationOnDB = new Accommodation(1L, "name", "description", 0D, 0, "address", "60000-000", "city", "state", "country");
+		Accommodation accommodationOnDB = new Accommodation(1L, "name", "description", "imageURL", 0D, 0, "address", "60000-000", "city", "state", "country");
 		
 		Long idToSearch = 1L;
 		
@@ -114,8 +114,8 @@ public class AccommodationServiceImplTest {
 	@DisplayName("Create method should return repository Save method result")
 	@Test
 	void CreateMethodShouldReturnRepositorySaveMethodResult() {
-		Accommodation accommodationToSave = new Accommodation(null, "name", "description", 0D, 0, "address", "60000-000", "city", "state", "country");
-		Accommodation registeredAccommodation = new Accommodation(1L, "name", "description", 0D, 0, "address", "60000-000", "city", "state", "country");
+		Accommodation accommodationToSave = new Accommodation(null, "name", "description", "imageURL", 0D, 0, "address", "60000-000", "city", "state", "country");
+		Accommodation registeredAccommodation = new Accommodation(1L, "name", "description", "imageURL", 0D, 0, "address", "60000-000", "city", "state", "country");
 		
 		Mockito.when(accommodationRepository.save(accommodationToSave))
 				.thenReturn(registeredAccommodation);
@@ -126,8 +126,8 @@ public class AccommodationServiceImplTest {
 	@DisplayName("Update method should return repository Save method result")
 	@Test
 	void UpdateMethodShouldReturnRepositorySaveMethodResult() {
-		Accommodation accommodationToUpdate = new Accommodation(1L, "name", "description", 0D, 0, "address", "60000-000", "city", "state", "country");
-		Accommodation updatedAccommodation = new Accommodation(1L, "name", "description", 0D, 0, "address", "60000-000", "city", "state", "country");
+		Accommodation accommodationToUpdate = new Accommodation(1L, "name", "description", "imageURL", 0D, 0, "address", "60000-000", "city", "state", "country");
+		Accommodation updatedAccommodation = new Accommodation(1L, "name", "description", "imageURL", 0D, 0, "address", "60000-000", "city", "state", "country");
 		
 		Mockito.when(accommodationRepository.save(accommodationToUpdate))
 				.thenReturn(updatedAccommodation);
