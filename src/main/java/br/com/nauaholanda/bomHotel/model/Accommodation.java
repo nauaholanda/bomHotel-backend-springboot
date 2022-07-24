@@ -24,9 +24,10 @@ public class Accommodation {
 	
 	private String name;
 	
-	@Column(length = 2048)	
+	@Column(length = 2048)
 	private String description;
 	
+	@Column(length = 1024)
 	private String imageURL;
 	
 	private Double dailyCost;
