@@ -53,12 +53,13 @@ public class AccommodationServiceImplTest {
 		String cityToSearch = "city";
 		String stateToSearch = "state";
 		String countryToSearch = "country";
+		Integer occupancyToSearch = 2;
 		
 		Mockito.when(accommodationRepository
-				.findByCityContainingIgnoreCaseAndStateContainingIgnoreCaseAndCountryContainingIgnoreCase(cityToSearch, stateToSearch, countryToSearch))
+				.findByCityContainingAndStateContainingAndCountryContainingAllIgnoreCaseAndOccupancyGreaterThanEqual(cityToSearch, stateToSearch, countryToSearch, occupancyToSearch))
 				.thenReturn(accommodationsOnDB);
 		
-		Assertions.assertEquals(accommodationsOnDB, accommodationService.search(cityToSearch, stateToSearch, countryToSearch));
+		Assertions.assertEquals(accommodationsOnDB, accommodationService.search(cityToSearch, stateToSearch, countryToSearch, occupancyToSearch));
 	}
 	
 	@DisplayName("Search method with null params should return repository Search by city, state and country method result")
@@ -69,12 +70,13 @@ public class AccommodationServiceImplTest {
 		String cityToSearch = null;
 		String stateToSearch = null;
 		String countryToSearch = null;
+		Integer occupancyToSearch = null;
 		
 		Mockito.when(accommodationRepository
-				.findByCityContainingIgnoreCaseAndStateContainingIgnoreCaseAndCountryContainingIgnoreCase("", "", ""))
+				.findByCityContainingAndStateContainingAndCountryContainingAllIgnoreCaseAndOccupancyGreaterThanEqual("", "", "", 0))
 				.thenReturn(accommodationsOnDB);
 		
-		Assertions.assertEquals(accommodationsOnDB, accommodationService.search(cityToSearch, stateToSearch, countryToSearch));
+		Assertions.assertEquals(accommodationsOnDB, accommodationService.search(cityToSearch, stateToSearch, countryToSearch, occupancyToSearch));
 	}
 	
 	@DisplayName("Find by id method should throw Accommodation not found exception")

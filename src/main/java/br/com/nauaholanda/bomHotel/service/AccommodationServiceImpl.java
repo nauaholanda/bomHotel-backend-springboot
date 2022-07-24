@@ -27,13 +27,14 @@ public class AccommodationServiceImpl implements AccommodationService {
 	}
 	
 	@Override
-	public List<Accommodation> search(String city, String state, String country) {
+	public List<Accommodation> search(String city, String state, String country, Integer occupancy) {
 		city = city == null ? "" : city;
 		state = state == null ? "" : state;
 		country = country == null ? "" : country;
+		occupancy = occupancy == null ? 0 : occupancy;
 		
 		return accommodationRepository
-				.findByCityContainingIgnoreCaseAndStateContainingIgnoreCaseAndCountryContainingIgnoreCase(city, state, country);
+				.findByCityContainingAndStateContainingAndCountryContainingAllIgnoreCaseAndOccupancyGreaterThanEqual(city, state, country, occupancy);
 	}
 	
 	@Override

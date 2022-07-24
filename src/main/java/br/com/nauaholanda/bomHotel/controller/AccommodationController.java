@@ -55,8 +55,9 @@ public class AccommodationController {
 	}
 	
 	@GetMapping("/search")
-	public ResponseEntity<List<AccommodationOutputDTO>> search(@RequestParam String city, @RequestParam String state, @RequestParam String country) {
-		List<AccommodationOutputDTO> accommodationDTOList = acommodationService.search(city, state, country).stream()
+	public ResponseEntity<List<AccommodationOutputDTO>> search(@RequestParam String city, @RequestParam String state,
+			@RequestParam String country, @RequestParam Integer occupancy) {
+		List<AccommodationOutputDTO> accommodationDTOList = acommodationService.search(city, state, country, occupancy).stream()
 				.map(accommodation -> new AccommodationOutputDTO(accommodation)).collect(Collectors.toList());
 	
 		return ResponseEntity.ok(accommodationDTOList);
