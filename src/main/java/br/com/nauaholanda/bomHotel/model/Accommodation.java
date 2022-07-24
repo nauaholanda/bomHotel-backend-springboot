@@ -1,5 +1,6 @@
 package br.com.nauaholanda.bomHotel.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,7 @@ public class Accommodation {
 	
 	private String name;
 	
+	@Column(length = 2048)	
 	private String description;
 	
 	private String imageURL;
