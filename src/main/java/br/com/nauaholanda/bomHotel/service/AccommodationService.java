@@ -10,7 +10,7 @@ public interface AccommodationService {
 	
 	List<Accommodation> find5Newest();
 	
-	List<Accommodation> search(String city, String state, String country);
+	List<Accommodation> search(String city, String state, String country, Integer occupancy);
 	
 	Accommodation findById(Long id);
 
