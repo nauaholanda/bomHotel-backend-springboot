@@ -14,13 +14,13 @@ public class BookingOutputDTO {
 	
 	private Long userId;
 	
-	private Long accommodationId;
+	private AccommodationOutputDTO accommodation;
 	
 	public BookingOutputDTO(Booking booking) {
 		this.checkinDate = booking.getCheckinDate();
 		this.checkoutDate = booking.getCheckoutDate();
 		this.userId = booking.getUser().getId();
-		this.accommodationId = booking.getAccommodation().getId();
+		this.accommodation = new AccommodationOutputDTO(booking.getAccommodation());
 	}
 	
 }
