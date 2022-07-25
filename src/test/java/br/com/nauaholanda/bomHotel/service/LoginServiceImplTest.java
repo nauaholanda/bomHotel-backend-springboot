@@ -1,5 +1,6 @@
 package br.com.nauaholanda.bomHotel.service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
@@ -27,19 +28,19 @@ public class LoginServiceImplTest {
 	@DisplayName("Login method should return a registered user")
 	@Test
 	void loginMethodShouldReturnARegisteredUser() {
-		User userToLogin = new User(null, "username", "password", null, null);
-		User userOnDB = new User(1L, userToLogin.getUsername(), userToLogin.getPassword(), "Name", null);
+		User userToLogin = new User(null, "username", "password", null, new ArrayList<>(), null);
+		User userOnDB = new User(1L, userToLogin.getUsername(), userToLogin.getPassword(), "Name", new ArrayList<>(), null);
 		
 		Mockito.when(userRepository.findByUsername(userToLogin.getUsername())).thenReturn(Optional.of(userOnDB));
 		
-		User expectedUser = new User(1L, userToLogin.getUsername(), userToLogin.getPassword(), "Name", UserRole.CUSTOMER);
+		User expectedUser = new User(1L, userToLogin.getUsername(), userToLogin.getPassword(), "Name", new ArrayList<>(), UserRole.CUSTOMER);
 		Assertions.assertEquals(expectedUser, LoginService.login(userToLogin));
 	}
 	
 	@DisplayName("Login method should throw a User not found exception")
 	@Test
 	void loginMethodShouldThrowAUserNotFoundException() {
-		User userToLogin = new User(null, "username", "password", null, null);
+		User userToLogin = new User(null, "username", "password", null, new ArrayList<>(), null);
 		
 		Mockito.when(userRepository.findByUsername(userToLogin.getUsername())).thenReturn(Optional.empty());
 		
@@ -54,8 +55,8 @@ public class LoginServiceImplTest {
 	@DisplayName("Login method should throw a User authentication failed exception")
 	@Test
 	void loginMethodShouldThrowAUserAuthenticationException() {
-		User userToLogin = new User(null, "username", "password", null, null);
-		User userOnDB = new User(1L, userToLogin.getUsername(), "another_password", "Name", null);
+		User userToLogin = new User(null, "username", "password", null, new ArrayList<>(), null);
+		User userOnDB = new User(1L, userToLogin.getUsername(), "another_password", "Name", new ArrayList<>(), null);
 		
 		Mockito.when(userRepository.findByUsername(userToLogin.getUsername())).thenReturn(Optional.of(userOnDB));
 		

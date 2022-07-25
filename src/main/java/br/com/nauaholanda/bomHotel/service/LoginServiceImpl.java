@@ -1,5 +1,6 @@
 package br.com.nauaholanda.bomHotel.service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class LoginServiceImpl implements LoginService {
 	public User login(User userToLogin) {
 		if ("admin".equalsIgnoreCase(userToLogin.getUsername())
 				&& "admin".equalsIgnoreCase(userToLogin.getPassword())) {
-			return new User(0L, userToLogin.getUsername(), userToLogin.getPassword(), "Admin", UserRole.ADMIN);
+			return new User(0L, userToLogin.getUsername(), userToLogin.getPassword(), "Admin", new ArrayList<>(), UserRole.ADMIN);
 		}
 
 		Optional<User> userInDBOptional = userRepository.findByUsername(userToLogin.getUsername());

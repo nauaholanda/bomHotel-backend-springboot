@@ -1,5 +1,6 @@
 package br.com.nauaholanda.bomHotel.service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
@@ -26,8 +27,8 @@ public class UserServiceImplTest {
 	@DisplayName("Create method should return the registered user")
 	@Test
 	void createMethodShouldReturnTheRegisteredUser() {
-		User userToCreate = new User(null, "username", "password", "Name", null);
-		User registeredUser = new User(1L, userToCreate.getUsername(), userToCreate.getPassword(), userToCreate.getName(), null);
+		User userToCreate = new User(null, "username", "password", "Name", new ArrayList<>(), null);
+		User registeredUser = new User(1L, userToCreate.getUsername(), userToCreate.getPassword(), userToCreate.getName(), new ArrayList<>(), null);
 		
 		Mockito.when(userRepository.findByUsername(userToCreate.getUsername())).thenReturn(Optional.empty());
 		
@@ -39,8 +40,8 @@ public class UserServiceImplTest {
 	@DisplayName("Create method should throw Username already exists exception")
 	@Test
 	void createMethodShouldThrowUsernameAlreadyExistsException() {
-		User userToCreate = new User(null, "username", "password", "Name", null);
-		User userInDB = new User(1L, userToCreate.getUsername(), userToCreate.getPassword(), userToCreate.getName(), null);
+		User userToCreate = new User(null, "username", "password", "Name", new ArrayList<>(), null);
+		User userInDB = new User(1L, userToCreate.getUsername(), userToCreate.getPassword(), userToCreate.getName(), new ArrayList<>(), null);
 		
 		Mockito.when(userRepository.findByUsername(userToCreate.getUsername())).thenReturn(Optional.of(userInDB));
 		

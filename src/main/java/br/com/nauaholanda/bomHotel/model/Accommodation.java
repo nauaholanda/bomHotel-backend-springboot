@@ -1,10 +1,14 @@
 package br.com.nauaholanda.bomHotel.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import br.com.nauaholanda.bomHotel.dto.input.AccommodationInputDTO;
 import br.com.nauaholanda.bomHotel.dto.input.AccommodationSearchInputDTO;
@@ -43,6 +47,9 @@ public class Accommodation {
 	private String state;
 	
 	private String country;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "accommodation")
+	private List<Booking> bookings;
 	
 	public Accommodation(AccommodationInputDTO accommodationInputDTO) {
 		this.id = accommodationInputDTO.getId();
