@@ -13,6 +13,8 @@ import org.mockito.Mockito;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import br.com.nauaholanda.bomHotel.enumeration.UserRole;
+import br.com.nauaholanda.bomHotel.exception.UserAuthenticationFailedException;
+import br.com.nauaholanda.bomHotel.exception.UserNotFoundException;
 import br.com.nauaholanda.bomHotel.model.User;
 import br.com.nauaholanda.bomHotel.repository.UserRepository;
 
@@ -23,7 +25,7 @@ public class LoginServiceImplTest {
 	UserRepository userRepository;
 	
 	@InjectMocks
-	LoginServiceImpl LoginService;
+	LoginServiceImpl loginService;
 	
 	@DisplayName("Login method should return a registered user")
 	@Test
@@ -34,7 +36,7 @@ public class LoginServiceImplTest {
 		Mockito.when(userRepository.findByUsername(userToLogin.getUsername())).thenReturn(Optional.of(userOnDB));
 		
 		User expectedUser = new User(1L, userToLogin.getUsername(), userToLogin.getPassword(), "Name", new ArrayList<>(), UserRole.CUSTOMER);
-		Assertions.assertEquals(expectedUser, LoginService.login(userToLogin));
+		Assertions.assertEquals(expectedUser, loginService.login(userToLogin));
 	}
 	
 	@DisplayName("Login method should throw a User not found exception")
@@ -44,12 +46,15 @@ public class LoginServiceImplTest {
 		
 		Mockito.when(userRepository.findByUsername(userToLogin.getUsername())).thenReturn(Optional.empty());
 		
+		String returnedMessage = "";
 		try {
-			LoginService.login(userToLogin);
-		} catch (Exception e) {
-			String expectedMessage = "User " + userToLogin.getUsername() + " not found!";
-			Assertions.assertEquals(expectedMessage, e.getMessage());
+			loginService.login(userToLogin);
+		} catch (UserNotFoundException e) {
+			returnedMessage = e.getMessage();
 		}
+
+		String expectedMessage = "User " + userToLogin.getUsername() + " not found!";
+		Assertions.assertEquals(expectedMessage, returnedMessage);
 	}
 	
 	@DisplayName("Login method should throw a User authentication failed exception")
@@ -60,12 +65,15 @@ public class LoginServiceImplTest {
 		
 		Mockito.when(userRepository.findByUsername(userToLogin.getUsername())).thenReturn(Optional.of(userOnDB));
 		
+		String returnedMessage = "";
 		try {
-			LoginService.login(userToLogin);
-		} catch (Exception e) {
-			String expectedMessage = "Authentication failed for user " + userToLogin.getUsername() + "!";
-			Assertions.assertEquals(expectedMessage, e.getMessage());
+			loginService.login(userToLogin);
+		} catch (UserAuthenticationFailedException e) {
+			returnedMessage = e.getMessage();
 		}
+
+		String expectedMessage = "Authentication failed for user " + userToLogin.getUsername() + "!";
+		Assertions.assertEquals(expectedMessage, returnedMessage);
 	}
 	
 }

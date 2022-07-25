@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import br.com.nauaholanda.bomHotel.exception.AccommodationNotFoundException;
 import br.com.nauaholanda.bomHotel.model.Accommodation;
 import br.com.nauaholanda.bomHotel.repository.AccommodationRepository;
 
@@ -87,12 +88,15 @@ public class AccommodationServiceImplTest {
 		
 		Mockito.when(accommodationRepository.findById(idToSearch)).thenReturn(Optional.empty());
 		
+		String returnedMessage = "";
 		try {
 			accommodationService.findById(idToSearch);
-		} catch (Exception e) {
-			String expectedMessage = "Accommodation with id " + idToSearch + " not found!";
-			Assertions.assertEquals(expectedMessage, e.getMessage());
+		} catch (AccommodationNotFoundException e) {
+			returnedMessage = e.getMessage();
 		}
+
+		String expectedMessage = "Accommodation with id " + idToSearch + " not found!";
+		Assertions.assertEquals(expectedMessage, returnedMessage);
 	}
 	
 	@DisplayName("Find by id method should return a registered accommodation")
@@ -104,12 +108,7 @@ public class AccommodationServiceImplTest {
 		
 		Mockito.when(accommodationRepository.findById(idToSearch)).thenReturn(Optional.of(accommodationOnDB));
 		
-		try {
-			accommodationService.findById(idToSearch);
-		} catch (Exception e) {
-			String expectedMessage = "Accommodation with id " + idToSearch + " not found!";
-			Assertions.assertEquals(expectedMessage, e.getMessage());
-		}
+		Assertions.assertEquals(accommodationOnDB, accommodationService.findById(idToSearch));
 	}
 	
 	@DisplayName("Create method should return repository Save method result")

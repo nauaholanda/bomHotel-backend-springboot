@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import br.com.nauaholanda.bomHotel.exception.UsernameAlreadyExistsException;
 import br.com.nauaholanda.bomHotel.model.User;
 import br.com.nauaholanda.bomHotel.repository.UserRepository;
 
@@ -45,12 +46,15 @@ public class UserServiceImplTest {
 		
 		Mockito.when(userRepository.findByUsername(userToCreate.getUsername())).thenReturn(Optional.of(userInDB));
 		
+		String returnedMessage = "";
 		try {
 			userService.create(userToCreate);
-		} catch (Exception e) {
-			String expectedMessage = "Username " + userToCreate.getUsername() + " already exists!";
-			Assertions.assertEquals(expectedMessage, e.getMessage());
+		} catch (UsernameAlreadyExistsException e) {
+			returnedMessage = e.getMessage();
 		}
+
+		String expectedMessage = "Username " + userToCreate.getUsername() + " already exists!";
+		Assertions.assertEquals(expectedMessage, returnedMessage);
 		
 	}
 	
