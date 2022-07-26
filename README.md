@@ -71,3 +71,11 @@ $ git clone <https://github.com/nauaholanda/bomhotel-backend-springboot>
 
 # O servidor iniciará na porta:8080 - acessível em <http://localhost:8080>
 ```
+<p>Observação: Essa API foi construída visando alimentar a aplicação front-end disponível em: https://github.com/nauaholanda/bomhotel-frontend-reactjs</p>
+<h2>Autor</h2>
+
+<p> Feito com carinho e empenho por Nauã Holanda. </p>
+<p> Contatos: 
+  <a href="https://www.linkedin.com/in/nauaholanda/"><img src="https://img.shields.io/badge/-Nauã-blue?style=flat-square&logo=Linkedin&logoColor=white" /> </a> 
+  <img src="https://img.shields.io/badge/-naua.holanda@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:naua.holanda@gmail.com" />
+</p>
