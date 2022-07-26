@@ -22,7 +22,7 @@
 <h2>Recursos Disponíveis</h2>
 <h4>Login</h4>
 <ul>
-  <li>POST: /login - Autentica o usuário fornecido</li>
+  <li>POST: /login - Autentica o usuário fornecido (Observação: é necessário inserir username: "admin" e password: "admin", para autenticar o usuário administrador)</li>
 </ul>
 
 <h4>User</h4>
