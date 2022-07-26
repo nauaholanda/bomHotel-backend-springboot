@@ -36,6 +36,7 @@ public class BookingServiceImpl implements BookingService{
 		
 		bookingConverted.setCheckinDate(inputDTO.getCheckinDate());
 		bookingConverted.setCheckoutDate(inputDTO.getCheckoutDate());
+		bookingConverted.setTotalCost(inputDTO.getTotalCost());
 		
 		bookingConverted.setUser(userRepository.findById(inputDTO.getUserId())
 				.orElseThrow(() -> new UserNotFoundException(inputDTO.getUserId())));
