@@ -27,6 +27,8 @@ public class Booking {
 	
 	private Date checkoutDate;
 	
+	private double totalCost;
+	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;

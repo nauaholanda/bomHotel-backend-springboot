@@ -55,8 +55,8 @@ public class BookingServiceImplTest {
 	@DisplayName("Create method should return repository Save method result")
 	@Test
 	void createMethodShouldReturnRepositorySaveMethodResult() {
-		Booking bookingToSave = new Booking(null, new Date(), new Date(), new User(), new Accommodation());
-		Booking bookingCreated = new Booking(1L, new Date(), new Date(), new User(), new Accommodation());
+		Booking bookingToSave = new Booking(null, new Date(), new Date(), 0D, new User(), new Accommodation());
+		Booking bookingCreated = new Booking(1L, new Date(), new Date(), 0D, new User(), new Accommodation());
 
 		Mockito.when(bookingRepository.save(bookingToSave)).thenReturn(bookingCreated);
 
@@ -66,7 +66,7 @@ public class BookingServiceImplTest {
 	@DisplayName("Convert input dto to entity method should return a filled entity")
 	@Test
 	void convertInputDTOtoEnttiyMethodShouldReturnAFilledEntity() {
-		BookingInputDTO bookingInputDTO = new BookingInputDTO(new Date(), new Date(), 1L, 1L);
+		BookingInputDTO bookingInputDTO = new BookingInputDTO(new Date(), new Date(), 0D, 1L, 1L);
 
 		User bookingUser = new User(1L, "username", "password", "Name", new ArrayList<>(), null);
 		Accommodation bookingAccommodation = new Accommodation(1L, "name", "description", "imageURL", 2.5D, 2,
@@ -77,7 +77,7 @@ public class BookingServiceImplTest {
 				.thenReturn(Optional.of(bookingAccommodation));
 
 		Booking expectedBooking = new Booking(null, bookingInputDTO.getCheckinDate(), bookingInputDTO.getCheckoutDate(),
-				bookingUser, bookingAccommodation);
+				bookingInputDTO.getTotalCost(), bookingUser, bookingAccommodation);
 
 		Assertions.assertEquals(expectedBooking, bookingService.convertInputDTOtoEntity(bookingInputDTO));
 	}
@@ -85,7 +85,7 @@ public class BookingServiceImplTest {
 	@DisplayName("Convert input dto to entity method should throw User not found exception")
 	@Test
 	void convertInputDTOtoEnttiyMethodShouldThowUserNotFoundException() {
-		BookingInputDTO bookingInputDTO = new BookingInputDTO(new Date(), new Date(), 1L, 1L);
+		BookingInputDTO bookingInputDTO = new BookingInputDTO(new Date(), new Date(), 0D, 1L, 1L);
 
 		Accommodation bookingAccommodation = new Accommodation(1L, "name", "description", "imageURL", 2.5D, 2,
 				"address", "60000-000", "city", "state", "country", new ArrayList<>());
@@ -108,7 +108,7 @@ public class BookingServiceImplTest {
 	@DisplayName("Convert input dto to entity method should throw Accommodation not found exception")
 	@Test
 	void convertInputDTOtoEnttiyMethodShouldThowAccommodationNotFoundException() {
-		BookingInputDTO bookingInputDTO = new BookingInputDTO(new Date(), new Date(), 1L, 1L);
+		BookingInputDTO bookingInputDTO = new BookingInputDTO(new Date(), new Date(), 0D, 1L, 1L);
 
 		User bookingUser = new User(1L, "username", "password", "Name", new ArrayList<>(), null);
 

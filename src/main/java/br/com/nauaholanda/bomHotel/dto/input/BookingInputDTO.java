@@ -20,6 +20,9 @@ public class BookingInputDTO {
 	private Date checkoutDate;
 	
 	@NotNull
+	private double totalCost;
+	
+	@NotNull
 	private Long userId;
 	
 	@NotNull
