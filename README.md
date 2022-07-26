@@ -14,7 +14,6 @@
 
 <p align="center">
  <a href="#recursos-disponíveis">Recursos Dispóníveis</a> •
- <a href="#telas-disponíveis">Telas disponíveis</a> • 
  <a href="#tecnologias">Tecnologias</a> • 
  <a href="#pré-requisitos">Pré-requisitos</a> • 
  <a href="#autor">Autor</a>
@@ -48,7 +47,15 @@
   <li>DELETE: /accommodation/{id} - remove a acomodação que possui o id fornecido da base de dados</li>
 </ul>
 
+<h2>Tecnologias</h2>
+<ul>
+  <li><a href="https://spring.io/">Spring boot</a></li>
+  <li><a href="https://www.postgresql.org/">PostgreSQL</a></li>
+  <li><a href="https://maven.apache.org/">Maven</a></li>
+  <li><a href="https://www.oracle.com/br/java/technologies/javase/jdk11-archive-downloads.html">Java</a></li>
+  <li><a href="https://junit.org/junit5//">JUnit</a></li>
+</ul>
 
-https://junit.org/junit5/
-https://spring.io/
-https://www.postgresql.org/
+
+
+
