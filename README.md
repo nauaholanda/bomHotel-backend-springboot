@@ -3,7 +3,7 @@
 </h1>
 
 <h1 align="center">Bom Hotel - Back-end</h1>
-<p align="center">API Rest desenvolvida com Spring Boot e testada automáticamente com JUnit 5 e Mockito</p>
+<p align="center">API Rest desenvolvida com Spring Boot e testada automaticamente com JUnit 5 e Mockito</p>
 
 <p align="center">
   <img src="https://img.shields.io/static/v1?label=SpringBoot&message=v.2.7.2&color=green&style=flat&logo=" />
